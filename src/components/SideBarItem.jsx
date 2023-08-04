@@ -43,6 +43,7 @@ const SideBarItem = () => {
             sx={{ height: "24px", width: "24px", marginRight: "15px" }}
           />
           <p>Search</p>
+          <p>Search</p>
         </Link>
       </Box>
     </>
