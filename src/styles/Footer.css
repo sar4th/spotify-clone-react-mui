@@ -6,7 +6,7 @@
     height: 65px;
     width: 90%;
     background-color: #282828;
-    padding: 20px;
+    /* padding: 20px; */
   }
   .footer__left {
     flex: 0.3;

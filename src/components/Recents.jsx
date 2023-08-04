@@ -16,11 +16,11 @@ const Recents = () => {
   const navigate = useNavigate();
   const spotify = new SpotifyWebApi();
   const dispatch = useDispatch();
-  const albums = useSelector((state) => state.data.albums);
+  const albums = useSelector((state) => state?.data?.albums);
 
   useEffect(() => {
     spotify.getUserPlaylists().then((response) => {
-      dispatch(set_albums(response.items));
+      dispatch(set_albums(response?.items));
     });
   }, []);
 
@@ -28,9 +28,9 @@ const Recents = () => {
     spotify.getPlaylist(playListId).then((response) => {
       const playlistDetails = {
         playListId: playListId,
-        img: response.images[0]?.url,
-        title: response.name,
-        description: response.description,
+        img: response?.images[0]?.url,
+        title: response?.name,
+        description: response?.description,
       };
       dispatch(SetplayListDetials(playlistDetails));
       navigate("/player");
@@ -87,7 +87,7 @@ const Recents = () => {
       <Box sx={{ padding: "16px" }}>
         {albums?.map((item) => (
           <Box
-            key={item.id}
+            key={item?.id}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -99,7 +99,7 @@ const Recents = () => {
                 backgroundColor: "rgba(255, 255, 255, 0.1)",
               },
             }}
-            onClick={() => handlePlay(item.id)}
+            onClick={() => handlePlay(item?.id)}
           >
             <img
               style={{
@@ -123,7 +123,7 @@ const Recents = () => {
                   fontSize: "0.875rem",
                 }}
               >
-                Playlist .{item.owner.display_name}
+                Playlist .{item?.owner?.display_name}
               </Typography>
             </Box>
           </Box>

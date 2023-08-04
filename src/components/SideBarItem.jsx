@@ -5,6 +5,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link } from "react-router-dom";
+import "../styles/styles.css"
 const SideBarItem = () => {
   return (
     <>
@@ -23,7 +24,7 @@ const SideBarItem = () => {
           }}
         >
           <HomeIcon sx={{ marginRight: "10px" }} />
-          <Link style={{ textDecoration: "none", color: "white" }} to={"/"}>
+          <Link style={{ textDecoration: "none", color: "white" ,fontSize:"1rem",fontFamily:"Roboto"}} to={"/"}>
             {" "}
             <p>Home</p>
           </Link>
@@ -37,12 +38,12 @@ const SideBarItem = () => {
             color: "white",
             fontSize: "1rem",
             fontWeight: 700,
+            fontFamily:"Roboto"
           }}
         >
           <SearchIcon
             sx={{ height: "24px", width: "24px", marginRight: "15px" }}
           />
-          <p>Search</p>
           <p>Search</p>
         </Link>
       </Box>

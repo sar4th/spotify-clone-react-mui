@@ -30,7 +30,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import MusicPlayer from "./MusicPlayer";
 import MusicBar from "./MusicBar";
 import Recents from "./Recents";
-
+import "../styles/styles.css";
 const DRAWER_WIDTH = 340;
 
 function Player(props) {
@@ -60,9 +60,9 @@ function Player(props) {
   const drawer = (
     <div>
       <Divider />
-      <MuiBox>
+      <Box>
         <SideBarItem />
-      </MuiBox>
+      </Box>
       <Divider />
       {/* <SidebarSecondItem /> */}
       <Recents />
