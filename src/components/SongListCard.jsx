@@ -63,7 +63,7 @@ const songBoxStyle = {
   alignItems: "center",
   marginBottom: "10px",
   cursor: "pointer",
-  padding: "8px",
+  padding: "5px",
   borderRadius: "4px",
   transition: "background-color 0.3s ease",
   "&:hover": {

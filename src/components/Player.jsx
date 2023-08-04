@@ -99,10 +99,10 @@ function Player(props) {
           >
             <MenuIcon />
           </IconButton>
-          <MuiBox>
+         {!token &&  <MuiBox>
             <Button className="loginButton">Sign up</Button>
             <Button className="loginButton">Log in</Button>
-          </MuiBox>
+          </MuiBox>}
         </Toolbar>
       </AppBar>
       <Box
@@ -148,7 +148,7 @@ function Player(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 1,
+          p: 3,
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
           background: "#1a1a1a",
         }}
