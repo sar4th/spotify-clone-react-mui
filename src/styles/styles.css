@@ -1,0 +1,16 @@
+body{
+    padding: 0;
+    margin: 0;
+    /* background-color: black !important; */
+}
+@font-face {
+    font-family: 'Circular Std';
+    src: url('./CircularStd-Light.otf') format('otf'),
+         url('./CircularStd-Bold.otf') format('otf'),
+         url("./CircularStd-Medium.otf") format('otf');
+
+
+  }
+.loginbuttons{
+font-family: CircularRound;
+}
