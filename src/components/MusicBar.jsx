@@ -12,20 +12,20 @@ import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import { Grid, Slider } from "@mui/material";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDispatch, useSelector } from "react-redux";
-import { setSongPlaying, setCurrentSong } from "../redux/MusicSlice"; // Update import
+import { setSongPlaying, setCurrentSong } from "../redux/MusicSlice";
 
 const MusicBar = () => {
   const dispatch = useDispatch();
   const songId = useSelector((state) => state.data.currentSong);
-  const playlist = useSelector((state) => state.data.playListSongs); // Update playlist selector
+  const playlist = useSelector((state) => state.data.playListSongs);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioPlayer, setAudioPlayer] = useState(null);
   const [trackInfo, setTrackInfo] = useState({
     data: {},
     image: "",
   });
-
-  const [currentSongIndex, setCurrentSongIndex] = useState(0); // Add currentSongIndex state
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [volume, setVolume] = useState(0.5);
 
   const spotify = new SpotifyWebApi();
 
@@ -59,13 +59,14 @@ const MusicBar = () => {
 
   useEffect(() => {
     if (audioPlayer) {
+      audioPlayer.volume = volume;
       if (isPlaying) {
         audioPlayer.play();
       } else {
         audioPlayer.pause();
       }
     }
-  }, [isPlaying, audioPlayer]);
+  }, [isPlaying, audioPlayer, volume]);
 
   const togglePlay = () => {
     if (audioPlayer) {
@@ -74,15 +75,19 @@ const MusicBar = () => {
   };
 
   const playNextSong = () => {
-    const nextIndex = (currentSongIndex + 1) % playlist.length; // Circular navigation
+    const nextIndex = (currentSongIndex + 1) % playlist.length;
     setCurrentSongIndex(nextIndex);
-    dispatch(setCurrentSong(playlist[nextIndex].track.id)); // Update Redux state
+    dispatch(setCurrentSong(playlist[nextIndex].track.id));
   };
 
   const playPreviousSong = () => {
     const prevIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
     setCurrentSongIndex(prevIndex);
-    dispatch(setCurrentSong(playlist[prevIndex].track.id)); // Update Redux state
+    dispatch(setCurrentSong(playlist[prevIndex].track.id));
+  };
+
+  const handleVolumeChange = (event, newValue) => {
+    setVolume(newValue);
   };
 
   return (
@@ -133,7 +138,14 @@ const MusicBar = () => {
                 <VolumeDownIcon />
               </Grid>
               <Grid item xs>
-                <Slider />
+              <Slider
+                  value={volume}
+                  onChange={handleVolumeChange}
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  aria-label="Volume slider"
+                />
               </Grid>
             </Grid>
           </div>

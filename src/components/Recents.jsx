@@ -14,15 +14,23 @@ import { useNavigate } from "react-router-dom";
 
 const Recents = () => {
   const navigate = useNavigate();
+  const token=useSelector((state)=>state.data.token)
+useEffect(()=>{
+  if(!token){
+    navigate("/login")
+     }
+},[token])
+
   const spotify = new SpotifyWebApi();
   const dispatch = useDispatch();
   const albums = useSelector((state) => state?.data?.albums);
 
   useEffect(() => {
+    if(token)
     spotify.getUserPlaylists().then((response) => {
       dispatch(set_albums(response?.items));
     });
-  }, []);
+  }, [token]);
 
   const handlePlay = (playListId) => {
     spotify.getPlaylist(playListId).then((response) => {
@@ -78,7 +86,12 @@ const Recents = () => {
           playlist
         </Button>
       </Box>
-      <Box display="flex" color="white" justifyContent="space-between" padding={2}>
+      <Box
+        display="flex"
+        color="white"
+        justifyContent="space-between"
+        padding={2}
+      >
         <SearchIcon />
         <Typography fontWeight={400} fontSize="0.8125rem">
           Recent

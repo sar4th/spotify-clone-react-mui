@@ -53,6 +53,7 @@ function App() {
           <Route path="/" element={token ? <Dashboard /> : <Login />} />
           <Route path="/dashboard" element={token ? <Dashboard /> : <Login />} />
           <Route path="/player" element={<Player />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
     </div>
