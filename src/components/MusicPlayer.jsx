@@ -97,7 +97,7 @@ const MusicPlayer = () => {
         display={"flex"}
         justifyContent={"flex-start"}
         alignItems={"center"}
-        padding={"5px"}
+        // padding={"5px"}
       >
         <Box>
           <IconButton
