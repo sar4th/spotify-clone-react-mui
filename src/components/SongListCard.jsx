@@ -13,7 +13,7 @@ const SongListCard = () => {
   const songs = useSelector((state) => state.data.playListSongs);
 
   return (
-    <Box>
+    <Box >
       {songs.map((song, index) => (
         <Box
           key={index}
@@ -31,7 +31,7 @@ const SongListCard = () => {
               src={song?.track?.album?.images[0]?.url}
               alt="Song"
             />
-            <Typography sx={songNameStyle}>
+            <Typography className="songList" sx={songNameStyle}>
               {song?.track?.name}
             </Typography>
           </Box>
@@ -61,7 +61,7 @@ const formatDuration = (ms) => {
 const songBoxStyle = {
   display: "flex",
   alignItems: "center",
-  marginBottom: "10px",
+  marginBottom: "5px",
   cursor: "pointer",
   padding: "5px",
   borderRadius: "4px",
@@ -79,7 +79,7 @@ const indexBoxStyle = {
 
 const songInfoStyle = {
   width: "40%",
-  paddingLeft: "10px",
+  paddingLeft: "5px",
   flex: "0 0 40%",
   display: "flex",
   alignItems: "center",
@@ -93,8 +93,9 @@ const songImageStyle = {
 
 const songNameStyle = {
   color: "white",
-  fontSize: "0.875rem",
+  fontSize: "1rem",
   fontWeight: "400",
+  fontFamily: "'Circular Std', sans-serif"
 };
 
 const albumInfoStyle = {
@@ -107,7 +108,7 @@ const albumNameStyle = {
   color: "white",
   fontSize: "0.8125rem",
   fontWeight: "400",
-  fontFamily: "Roboto",
+  fontFamily: "'Circular Std', sans-serif"
 };
 
 const durationStyle = {

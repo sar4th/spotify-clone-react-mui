@@ -79,6 +79,7 @@ function Player(props) {
         sx={{
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
           ml: { sm: `${DRAWER_WIDTH}px` },
+          overflow:"hidden"
         }}
       >
         <Toolbar
@@ -148,7 +149,8 @@ function Player(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          p: 1,
+          overflow:"hidden",
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
           background: "#1a1a1a",
         }}

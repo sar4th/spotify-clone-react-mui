@@ -97,7 +97,7 @@ const MusicPlayer = () => {
         display={"flex"}
         justifyContent={"flex-start"}
         alignItems={"center"}
-        // padding={"5px"}
+        padding={"5px"}
       >
         <Box>
           <IconButton
@@ -137,14 +137,14 @@ const MusicPlayer = () => {
         >
           <div>
             <Typography
-              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" }}
+              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" ,  fontFamily: "'Circular Std', sans-serif",}}
             >
               #
             </Typography>
           </div>
           <div>
             <Typography
-              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" }}
+              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white",  fontFamily: "'Circular Std', sans-serif", }}
             >
               Title
             </Typography>
@@ -158,7 +158,7 @@ const MusicPlayer = () => {
           }}
         >
           <Typography
-            sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" }}
+            sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" ,  fontFamily: "'Circular Std', sans-serif",}}
           >
             Album
           </Typography>

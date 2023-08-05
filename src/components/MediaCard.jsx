@@ -39,6 +39,7 @@ const titleStyle = {
   fontSize: "0.875rem",
   fontWeight: "700",
   textAlign: "center",
+  fontFamily: "'Circular Std', sans-serif"
 };
 
 const descriptionStyle = {
@@ -48,6 +49,7 @@ const descriptionStyle = {
   fontFamily: "sans-serif",
   textAlign: "center",
   lineHeight: 1.2,
+  fontFamily: "'Circular Std', sans-serif"
 };
 
 const spotifyBadgeStyle = {

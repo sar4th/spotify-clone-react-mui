@@ -24,7 +24,7 @@ const SideBarItem = () => {
           }}
         >
           <HomeIcon sx={{ marginRight: "10px" }} />
-          <Link style={{ textDecoration: "none", color: "white" ,fontSize:"1rem",fontFamily:"Roboto"}} to={"/"}>
+          <Link style={{ textDecoration: "none", color: "white" ,fontSize:"1rem", fontFamily: "'Circular Std', sans-serif"}} to={"/"}>
             {" "}
             <p>Home</p>
           </Link>
@@ -38,7 +38,7 @@ const SideBarItem = () => {
             color: "white",
             fontSize: "1rem",
             fontWeight: 700,
-            fontFamily:"Roboto"
+            fontFamily: "'Circular Std', sans-serif"
           }}
         >
           <SearchIcon
