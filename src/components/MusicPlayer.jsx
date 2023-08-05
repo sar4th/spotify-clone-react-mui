@@ -1,4 +1,4 @@
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assests/spotify-logo-png.png";
@@ -93,90 +93,50 @@ const MusicPlayer = () => {
           </Box>
         </Box>
       </Box>
-      <Box
-        display={"flex"}
-        justifyContent={"flex-start"}
-        alignItems={"center"}
-        // padding={"5px"}
-      >
-        <Box>
-          <IconButton
-            style={{ ...playButtonStyle, opacity: 1 }}
-            aria-label="play"
-            // onClick={()=>handlePlay({playListId,img,description,title})}
-            onClick={()=>handlePlay(playListId)}
-          >
-            <PlayCircleFilledIcon
-              sx={{ fontSize: "4rem", color: "#1DB954", fontWeight: "700" }}
-            />
-          </IconButton>
-        </Box>
-        <Box sx={{ width: "3rem", height: "2rem" }}>
-          <FavoriteBorderIcon
-            sx={{ color: "white", height: "100%", width: "100%" }}
-          />
-        </Box>
-        <Box sx={{ width: "3rem", height: "2rem" }}>
-          <MoreHorizIcon
-            sx={{ color: "white", height: "100%", width: "100%" }}
-          />
-        </Box>
-      </Box>
-      <Box
-        sx={{ marginTop: "20px" }}
-        display={"flex"}
-        justifyContent={"space-around"}
-        alignItems={"center"}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div>
+      <Box sx={{ marginTop: '20px' ,display:"flex"}}>
+        <Grid container justifyContent="space-around" alignItems="center">
+          <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
             <Typography
-              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" ,  fontFamily: "'Circular Std', sans-serif",}}
+              sx={{
+                fontSize: '0.8125rem !important',
+                fontWeight: 400 ,
+                color: 'white !important',
+                fontFamily: "'Circular Std', sans-serif !important",
+              }}
             >
               #
             </Typography>
-          </div>
-          <div>
             <Typography
-              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white",  fontFamily: "'Circular Std', sans-serif", }}
+              sx={{
+                fontSize: '0.8125rem !important',
+                fontWeight: 400,
+                color: 'white',
+                fontFamily: "'Circular Std', sans-serif !important",
+              }}
             >
               Title
             </Typography>
-          </div>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" ,  fontFamily: "'Circular Std', sans-serif",}}
-          >
-            Album
-          </Typography>
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }}
-        >
-          <AccessTimeIcon
-            sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" }}
-          />
-        </Box>
+          </Grid>
+          <Grid item>
+            <Typography
+              sx={{
+                fontSize: '0.8125rem',
+                fontWeight: 400,
+                color: 'white',
+                fontFamily: "'Circular Std', sans-serif",
+              }}
+            >
+              Album
+            </Typography>
+          </Grid>
+          <Grid item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+            <AccessTimeIcon
+              sx={{ fontSize: '0.8125rem', fontWeight: 400, color: 'white' }}
+            />
+          </Grid>
+        </Grid>
       </Box>
-
-      <SongListCard />
+      {/* <SongListCard /> */}
     </>
   );
 };

@@ -63,7 +63,8 @@ const songBoxStyle = {
   alignItems: "center",
   marginBottom: "5px",
   cursor: "pointer",
-  padding: "5px",
+  padding: "0 0 0 5px",
+  justifyContent:"center",
   borderRadius: "4px",
   transition: "background-color 0.3s ease",
   "&:hover": {
@@ -74,9 +75,10 @@ const songBoxStyle = {
 const indexBoxStyle = {
   fontWeight: "400",
   color: "white",
-  flex: "0 0 10%",
-};
-
+  // flex: "0 0 10%",
+  dispatch:"flex",
+  justifyContent: "space-around",
+}
 const songInfoStyle = {
   width: "40%",
   paddingLeft: "5px",

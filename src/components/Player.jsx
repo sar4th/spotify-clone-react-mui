@@ -16,7 +16,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Button, Box as MuiBox } from "@mui/material";
+import { Button, Grid, Box as MuiBox } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import HomeIcon from "@mui/icons-material/Home";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
@@ -31,6 +31,7 @@ import MusicPlayer from "./MusicPlayer";
 import MusicBar from "./MusicBar";
 import Recents from "./Recents";
 import "../styles/styles.css";
+import SongListCard from "./SongListCard";
 const DRAWER_WIDTH = 340;
 
 function Player(props) {
@@ -155,7 +156,17 @@ function Player(props) {
           background: "#1a1a1a",
         }}
       >
+        <Grid container>
+      <Grid
+       item xs={12}>
+        {/* Render your SongListCard component */}
         <MusicPlayer />
+      </Grid>
+      <Grid item xs={12}>
+        {/* Render your MyComponent component */}
+        <SongListCard />
+      </Grid>
+    </Grid>
         <MusicBar />
       </Box>
     </Box>
