@@ -139,6 +139,7 @@ function Player(props) {
               width: "340px",
               backgroundColor: "black",
               padding: "10px",
+              overflow:"hidden"
             },
           }}
           open

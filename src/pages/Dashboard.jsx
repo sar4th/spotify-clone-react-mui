@@ -17,6 +17,7 @@ import MediaCard from "../components/MediaCard";
 import Recents from "../components/Recents";
 import { setToken } from "../redux/MusicSlice";
 import { Music } from "../utils/Music";
+import { TitleCard } from "../components/TitleCard";
 
 const drawerWidth = 340;
 
@@ -207,6 +208,7 @@ function ResponsiveDrawer(props) {
         }}
       >
         <Grid container display={"flex"} spacing={2} marginTop={"30px"}>
+          <TitleCard />
           {renderPlaylists()}
         </Grid>
 

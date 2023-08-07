@@ -13,7 +13,7 @@ const SongListCard = () => {
   const songs = useSelector((state) => state.data.playListSongs);
 
   return (
-    <Box >
+    <Box>
       {songs.map((song, index) => (
         <Box
           key={index}
@@ -61,10 +61,10 @@ const formatDuration = (ms) => {
 const songBoxStyle = {
   display: "flex",
   alignItems: "center",
-  marginBottom: "5px",
+  marginBottom: "15px",
   cursor: "pointer",
   padding: "0 0 0 5px",
-  justifyContent:"center",
+  justifyContent: "center",
   borderRadius: "4px",
   transition: "background-color 0.3s ease",
   "&:hover": {
@@ -76,9 +76,9 @@ const indexBoxStyle = {
   fontWeight: "400",
   color: "white",
   // flex: "0 0 10%",
-  dispatch:"flex",
+  dispatch: "flex",
   justifyContent: "space-around",
-}
+};
 const songInfoStyle = {
   width: "40%",
   paddingLeft: "5px",
@@ -97,7 +97,7 @@ const songNameStyle = {
   color: "white",
   fontSize: "1rem",
   fontWeight: "400",
-  fontFamily: "'Circular Std', sans-serif"
+  fontFamily: "'Circular Std', sans-serif",
 };
 
 const albumInfoStyle = {
@@ -110,7 +110,7 @@ const albumNameStyle = {
   color: "white",
   fontSize: "0.8125rem",
   fontWeight: "400",
-  fontFamily: "'Circular Std', sans-serif"
+  fontFamily: "'Circular Std', sans-serif",
 };
 
 const durationStyle = {

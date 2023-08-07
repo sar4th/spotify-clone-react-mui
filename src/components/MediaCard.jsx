@@ -39,7 +39,7 @@ const titleStyle = {
   fontSize: "0.875rem",
   fontWeight: "700",
   textAlign: "center",
-  fontFamily: "'Circular Std', sans-serif"
+  fontFamily: "'Circular Std', sans-serif",
 };
 
 const descriptionStyle = {
@@ -49,7 +49,7 @@ const descriptionStyle = {
   fontFamily: "sans-serif",
   textAlign: "center",
   lineHeight: 1.2,
-  fontFamily: "'Circular Std', sans-serif"
+  fontFamily: "'Circular Std', sans-serif",
 };
 
 const spotifyBadgeStyle = {
@@ -121,11 +121,11 @@ const MusicCard = ({ img, title, description, playListId }) => {
               />
             </IconButton>
           )}
-          <img
+          {/* <img
             style={spotifyBadgeStyle}
             src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_White.png"
             alt="Spotify Badge"
-          />
+          /> */}
         </Box>
         <Typography style={titleStyle}>{title}</Typography>
         <Typography style={descriptionStyle}>{description}</Typography>
