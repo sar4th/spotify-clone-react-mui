@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import SpotifyWebApi from "spotify-web-api-js";
 import {
   SetplayListDetials,
-  setPlaylistSongs,
   set_albums,
 } from "../redux/MusicSlice";
 import { Box, Button, Typography } from "@mui/material";

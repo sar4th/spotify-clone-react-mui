@@ -2,29 +2,15 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import { Button, Grid, Box as MuiBox } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import HomeIcon from "@mui/icons-material/Home";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import SideBarItem from "../components/SideBarItem";
-import SidebarSecondItem from "../components/SidebarSecondItem";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { setPlayListID, setPlaylistSongs } from "../redux/MusicSlice";
+import { setPlaylistSongs } from "../redux/MusicSlice";
 import { useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import MusicPlayer from "./MusicPlayer";
@@ -80,7 +66,7 @@ function Player(props) {
         sx={{
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
           ml: { sm: `${DRAWER_WIDTH}px` },
-          overflow:"hidden"
+          overflow: "hidden",
         }}
       >
         <Toolbar
@@ -101,10 +87,12 @@ function Player(props) {
           >
             <MenuIcon />
           </IconButton>
-         {!token &&  <MuiBox>
-            <Button className="loginButton">Sign up</Button>
-            <Button className="loginButton">Log in</Button>
-          </MuiBox>}
+          {!token && (
+            <MuiBox>
+              <Button className="loginButton">Sign up</Button>
+              <Button className="loginButton">Log in</Button>
+            </MuiBox>
+          )}
         </Toolbar>
       </AppBar>
       <Box
@@ -139,7 +127,7 @@ function Player(props) {
               width: "340px",
               backgroundColor: "black",
               padding: "10px",
-              overflow:"hidden"
+              overflow: "hidden",
             },
           }}
           open
@@ -152,22 +140,21 @@ function Player(props) {
         sx={{
           flexGrow: 1,
           p: 1,
-          overflow:"hidden",
+          overflow: "hidden",
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
           background: "#1a1a1a",
         }}
       >
         <Grid container>
-      <Grid
-       item xs={12}>
-        {/* Render your SongListCard component */}
-        <MusicPlayer />
-      </Grid>
-      <Grid item xs={12}>
-        {/* Render your MyComponent component */}
-        <SongListCard />
-      </Grid>
-    </Grid>
+          <Grid item xs={12}>
+            {/* Render your SongListCard component */}
+            <MusicPlayer />
+          </Grid>
+          <Grid item xs={12}>
+            {/* Render your MyComponent component */}
+            <SongListCard />
+          </Grid>
+        </Grid>
         <MusicBar />
       </Box>
     </Box>

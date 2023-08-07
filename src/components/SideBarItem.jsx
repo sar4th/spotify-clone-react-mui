@@ -1,6 +1,4 @@
 import { Box } from "@mui/material";
-import Home from "../assests/Home.png";
-import Search from "../assests/search.png";
 import HomeIcon from "@mui/icons-material/Home";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";

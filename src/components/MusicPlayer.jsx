@@ -3,17 +3,13 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logo from "../assests/spotify-logo-png.png";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import SongListCard from "./SongListCard";
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { setCurrentSong, setSongPlaying } from "../redux/MusicSlice";
 const MusicPlayer = () => {
-  const playlist=useSelector((state)=>state.data.playListSongs)
+  const playlist = useSelector((state) => state.data.playListSongs);
   const handlePlay = () => {
     if (playlist.length > 0) {
       const firstItemId = playlist[0].track.id;
-      dispatch(setCurrentSong(firstItemId))
+      dispatch(setCurrentSong(firstItemId));
     } else {
       console.log("Playlist is empty.");
     }
@@ -93,14 +89,14 @@ const MusicPlayer = () => {
           </Box>
         </Box>
       </Box>
-      <Box sx={{ marginTop: '20px' ,display:"flex"}}>
+      <Box sx={{ marginTop: "20px", display: "flex" }}>
         <Grid container justifyContent="space-around" alignItems="center">
-          <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
+          <Grid item sx={{ display: "flex", alignItems: "center" }}>
             <Typography
               sx={{
-                fontSize: '0.8125rem !important',
-                fontWeight: 400 ,
-                color: 'white !important',
+                fontSize: "0.8125rem !important",
+                fontWeight: 400,
+                color: "white !important",
                 fontFamily: "'Circular Std', sans-serif !important",
               }}
             >
@@ -108,9 +104,9 @@ const MusicPlayer = () => {
             </Typography>
             <Typography
               sx={{
-                fontSize: '0.8125rem !important',
+                fontSize: "0.8125rem !important",
                 fontWeight: 400,
-                color: 'white',
+                color: "white",
                 fontFamily: "'Circular Std', sans-serif !important",
               }}
             >
@@ -120,18 +116,25 @@ const MusicPlayer = () => {
           <Grid item>
             <Typography
               sx={{
-                fontSize: '0.8125rem',
+                fontSize: "0.8125rem",
                 fontWeight: 400,
-                color: 'white',
+                color: "white",
                 fontFamily: "'Circular Std', sans-serif",
               }}
             >
               Album
             </Typography>
           </Grid>
-          <Grid item sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
+          <Grid
+            item
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+            }}
+          >
             <AccessTimeIcon
-              sx={{ fontSize: '0.8125rem', fontWeight: 400, color: 'white' }}
+              sx={{ fontSize: "0.8125rem", fontWeight: 400, color: "white" }}
             />
           </Grid>
         </Grid>
