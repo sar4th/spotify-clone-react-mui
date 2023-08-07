@@ -83,7 +83,7 @@ function Player(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: "none" } }}
+            sx={{ mr: 2, display: { sm: "none", marginRight: "auto" } }}
           >
             <MenuIcon />
           </IconButton>
@@ -155,6 +155,7 @@ function Player(props) {
             <SongListCard />
           </Grid>
         </Grid>
+
         <MusicBar />
       </Box>
     </Box>

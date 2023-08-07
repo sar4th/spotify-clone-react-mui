@@ -9,7 +9,7 @@ import RepeatIcon from "@mui/icons-material/Repeat";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 
-import { Grid, Slider } from "@mui/material";
+import { Box, Grid, Slider, Typography } from "@mui/material";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDispatch, useSelector } from "react-redux";
 import { setSongPlaying, setCurrentSong } from "../redux/MusicSlice";
@@ -81,7 +81,8 @@ const MusicBar = () => {
   };
 
   const playPreviousSong = () => {
-    const prevIndex = (currentSongIndex - 1 + playlist.length) % playlist.length;
+    const prevIndex =
+      (currentSongIndex - 1 + playlist.length) % playlist.length;
     setCurrentSongIndex(prevIndex);
     dispatch(setCurrentSong(playlist[prevIndex].track.id));
   };
@@ -91,67 +92,127 @@ const MusicBar = () => {
   };
 
   return (
-    <Grid container>
-      <Grid item md={12}>
-        <div className="footer">
-          <div className="footer__left">
+    <Box
+      sx={{
+        position: "fixed",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        bottom: 0,
+        height: 65,
+        width: "100%",
+        backgroundColor: "#282828",
+        padding: "10px",
+        zIndex: 1000,
+      }}
+    >
+      <Grid container alignItems="center" justifyContent={"center"}>
+        <Grid item xs={12} sm={3}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              maxWidth: 300,
+            }}
+          >
             {trackInfo.image && (
               <img
                 src={trackInfo.image}
                 alt=""
-                className="footer__albumLogo"
+                style={{
+                  height: 60,
+                  width: 60,
+                  marginRight: 20,
+                  objectFit: "contain",
+                }}
               />
             )}
-            <div className="footer__songInfo">
-              <h4>{trackInfo.data?.album?.name}</h4>
-              <p>{trackInfo.data?.artists?.[0]?.name}</p>
+            <div>
+              <Typography
+                // variant="h4"
+                sx={{ marginBottom: 1, color: "white" }}
+              >
+                {trackInfo.data?.album?.name}
+              </Typography>
+              <Typography
+                // variant="body2"
+                sx={{ fontSize: 12, color: "white" }}
+              >
+                {trackInfo.data?.artists?.[0]?.name}
+              </Typography>
             </div>
-          </div>
-          <div className="footer__center">
-            <ShuffleIcon className="footer__green" />
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={12} md={4}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              // padding: "30px",
+              color: "white",
+              maxWidth: 300,
+            }}
+          >
+            <ShuffleIcon sx={{ color: "#1ed15e", cursor: "pointer" }} />
             <SkipPreviousIcon
-              className="footer__icon"
+              sx={{ color: "white", cursor: "pointer" }}
               onClick={playPreviousSong}
             />
             {isPlaying ? (
               <PauseCircleOutlineIcon
                 fontSize="large"
-                className="footer__icon"
+                sx={{
+                  color: "white",
+                  cursor: "pointer",
+                  fontSize: "2.5rem",
+                }}
                 onClick={togglePlay}
               />
             ) : (
               <PlayCircleOutlineIcon
                 fontSize="large"
-                className="footer__icon"
+                sx={{
+                  color: "white",
+                  cursor: "pointer",
+                  fontSize: "2.5rem",
+                }}
                 onClick={togglePlay}
               />
             )}
-            <SkipNextIcon className="footer__icon" onClick={playNextSong} />
-            <RepeatIcon className="footer__green" />
-          </div>
-          <div className="footer__right">
-            <Grid container spacing={2}>
-              <Grid item>
-                <PlaylistPlayIcon />
-              </Grid>
-              <Grid item>
-                <VolumeDownIcon />
-              </Grid>
-              <Grid item xs>
-              <Slider
-                  value={volume}
-                  onChange={handleVolumeChange}
-                  min={0}
-                  max={1}
-                  step={0.01}
-                  aria-label="Volume slider"
-                />
-              </Grid>
-            </Grid>
-          </div>
-        </div>
+            <SkipNextIcon
+              sx={{ color: "white", cursor: "pointer" }}
+              onClick={playNextSong}
+            />
+            <RepeatIcon sx={{ color: "#1ed15e", cursor: "pointer" }} />
+          </Box>
+        </Grid>
+        <Grid item xs={12} sm={12} md={5}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              color: "white",
+            }}
+          >
+            <PlaylistPlayIcon sx={{ cursor: "pointer" }} />
+            <VolumeDownIcon sx={{ cursor: "pointer" }} />
+            <Slider
+              value={volume}
+              onChange={handleVolumeChange}
+              min={0}
+              max={1}
+              step={0.01}
+              aria-label="Volume slider"
+              sx={{
+                color: "#1ed15e",
+              }}
+            />
+          </Box>
+        </Grid>
       </Grid>
-    </Grid>
+    </Box>
   );
 };
 

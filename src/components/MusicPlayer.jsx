@@ -49,8 +49,13 @@ const MusicPlayer = () => {
           sx={{
             display: "flex",
             justifyContent: "flex-start",
+            alignItems: "center",
+            flexDirection: "column",
             padding: "15px",
             gap: "3rem",
+            "@media (min-width: 900px)": {
+              flexDirection: "row",
+            },
           }}
         >
           <Box sx={{ width: "192px", height: "192px" }}>
