@@ -13,10 +13,14 @@ const cardContainerStyle = {
   width: "180px",
   height: "250px",
   borderRadius: "8px",
-  background: "linear-gradient(45deg, #6b6b6b, #2f2f2f)",
+  background: "#181818",
   boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
   cursor: "pointer",
   justifyContent: "center",
+  transition: "background-color 0.3s ease",
+  "&:hover": {
+    background: "#282828",
+  },
 };
 
 const imageContainerStyle = {
@@ -87,21 +91,21 @@ const MusicCard = ({ img, title, description, playListId }) => {
   const handleMouseEnter = useCallback(
     debounce(() => {
       setHovered(true);
-    }, 200), // Adjust the debounce duration (e.g., 200 milliseconds)
+    }, 200),
     []
   );
 
   const handleMouseLeave = useCallback(
     debounce(() => {
       setHovered(false);
-    }, 200), // Adjust the debounce duration (e.g., 200 milliseconds)
+    }, 200),
     []
   );
 
   return (
     <Grid item md={2.3}>
       <Box
-        style={cardContainerStyle}
+        sx={cardContainerStyle}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -127,8 +131,45 @@ const MusicCard = ({ img, title, description, playListId }) => {
             alt="Spotify Badge"
           /> */}
         </Box>
-        <Typography style={titleStyle}>{title}</Typography>
-        <Typography style={descriptionStyle}>{description}</Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            padding: "5px",
+            gap: "5px",
+          }}
+        >
+          <Box>
+            <Typography
+              sx={{
+                color: "#FFFFFF",
+                fontSize: "0.875rem",
+                fontWeight: "700",
+                // textAlign: "center",
+                fontFamily: "'Circular Std', sans-serif",
+              }}
+            >
+              {title}
+            </Typography>
+          </Box>
+          <Box>
+            <Typography
+              sx={{
+                color: "#6a6a6a",
+                fontSize: "0.875rem",
+                fontWeight: "400",
+                fontFamily: "sans-serif",
+                // textAlign: "center",
+                lineHeight: 1.2,
+                fontFamily: "'Circular Std', sans-serif",
+              }}
+            >
+              {description}
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </Grid>
   );
