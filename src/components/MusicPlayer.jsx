@@ -9,11 +9,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { setCurrentSong, setSongPlaying } from "../redux/MusicSlice";
 const MusicPlayer = () => {
-  const playlist=useSelector((state)=>state.data.playListSongs)
+  const playlist = useSelector((state) => state.data.playListSongs);
   const handlePlay = () => {
     if (playlist.length > 0) {
       const firstItemId = playlist[0].track.id;
-      dispatch(setCurrentSong(firstItemId))
+      dispatch(setCurrentSong(firstItemId));
     } else {
       console.log("Playlist is empty.");
     }
@@ -56,7 +56,6 @@ const MusicPlayer = () => {
           <Box sx={{ width: "192px", height: "192px" }}>
             <img style={{ width: "100%", height: "100%" }} src={img} alt="" />
           </Box>
-
           <Box>
             <Typography
               sx={{ fontSize: "0.8125rem", fontWeight: "700", color: "white" }}
@@ -104,7 +103,7 @@ const MusicPlayer = () => {
             style={{ ...playButtonStyle, opacity: 1 }}
             aria-label="play"
             // onClick={()=>handlePlay({playListId,img,description,title})}
-            onClick={()=>handlePlay(playListId)}
+            onClick={() => handlePlay(playListId)}
           >
             <PlayCircleFilledIcon
               sx={{ fontSize: "4rem", color: "#1DB954", fontWeight: "700" }}

@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Player from "./components/Player";
 import { getTokenFromUrl } from "./utils/spotify";
 import {
+  setLoadings,
   setToken,
   set_discover_weekly,
   set_playlist,
@@ -21,18 +22,28 @@ function App() {
   const token = useSelector((state) => state.data.token);
 
   useEffect(() => {
+    dispatch(setLoadings(true));
+
     const initializeSpotify = (_token) => {
       spotify.setAccessToken(_token);
 
+      const fetchPlaylist = () => {
+        setTimeout(() => {
+          spotify.getPlaylist("37i9dQZF1DWX3SoTqhs2rq").then((discoverWeekly) => {
+            dispatch(set_discover_weekly(discoverWeekly));
+            dispatch(setLoadings(false));
+          });
+        }, 5000); // Adjust the timeout duration (e.g., 5000 milliseconds)
+      };
+
       Promise.all([
         spotify.getMe(),
-        spotify.getPlaylist("37i9dQZF1DWX3SoTqhs2rq"),
         spotify.getFeaturedPlaylists(),
         spotify.getPlaylistTracks("37i9dQZF1DWX3SoTqhs2rq"),
-      ]).then(([user, discoverWeekly, playlists, playlistTracks]) => {
+      ]).then(([user, playlists, playlistTracks]) => {
         dispatch(set_user(user));
-        dispatch(set_discover_weekly(discoverWeekly));
         dispatch(set_playlist(playlists.playlists.items));
+        fetchPlaylist();
       });
     };
 
@@ -51,7 +62,10 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={token ? <Dashboard /> : <Login />} />
-          <Route path="/dashboard" element={token ? <Dashboard /> : <Login />} />
+          <Route
+            path="/dashboard"
+            element={token ? <Dashboard /> : <Login />}
+          />
           <Route path="/player" element={<Player />} />
           <Route path="/login" element={<Login />} />
         </Routes>

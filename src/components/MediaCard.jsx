@@ -103,7 +103,7 @@ const MusicCard = ({ img, title, description, playListId }) => {
   );
 
   return (
-    <Grid item md={2.3}>
+    <Grid item md={2.3} sm={12}>
       <Box
         sx={cardContainerStyle}
         onMouseEnter={handleMouseEnter}
@@ -147,7 +147,6 @@ const MusicCard = ({ img, title, description, playListId }) => {
                 color: "#FFFFFF",
                 fontSize: "0.875rem",
                 fontWeight: "700",
-                // textAlign: "center",
                 fontFamily: "'Circular Std', sans-serif",
               }}
             >
@@ -161,7 +160,6 @@ const MusicCard = ({ img, title, description, playListId }) => {
                 fontSize: "0.875rem",
                 fontWeight: "400",
                 fontFamily: "sans-serif",
-                // textAlign: "center",
                 lineHeight: 1.2,
                 fontFamily: "'Circular Std', sans-serif",
               }}

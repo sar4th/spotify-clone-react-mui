@@ -8,7 +8,7 @@ import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Skeleton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "../styles/styles.css";
@@ -22,6 +22,8 @@ import { TitleCard } from "../components/TitleCard";
 const drawerWidth = 340;
 
 function ResponsiveDrawer(props) {
+  const isLoading = useSelector((state) => state.data.setLoading);
+  console.log("it is", isLoading);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.data.token);
   const playlists = useSelector((state) => state.data.playlists);
@@ -41,15 +43,24 @@ function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   const renderPlaylists = () => {
-    return playlists.map((item) => (
-      <MediaCard
-        key={item.id}
-        img={item.images[0].url}
-        description={item.description}
-        title={item.name}
-        playListId={item.id}
-      />
-    ));
+    return playlists.map((item) =>
+      isLoading ? (
+        <Skeleton
+          variant="rectangular"
+          width={210}
+          height={118}
+          animation="wave"
+        />
+      ) : (
+        <MediaCard
+          key={item.id}
+          img={item.images[0].url}
+          description={item.description}
+          title={item.name}
+          playListId={item.id}
+        />
+      )
+    );
   };
 
   const renderTopMixes = () => {
@@ -89,7 +100,7 @@ function ResponsiveDrawer(props) {
         <Toolbar
           sx={{
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             alignItems: "center",
             background: "black",
             padding: "8px",
@@ -104,6 +115,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
+          <Box></Box>
           {token ? (
             <Button
               onClick={() => logout()}
@@ -207,7 +219,13 @@ function ResponsiveDrawer(props) {
           background: "#1a1a1a;",
         }}
       >
-        <Grid container display={"flex"} spacing={2} marginTop={"30px"}>
+        <Grid
+          container
+          display={"flex"}
+          spacing={2}
+          marginTop={"30px"}
+          justifyContent={"center"}
+        >
           <TitleCard />
           {renderPlaylists()}
         </Grid>
