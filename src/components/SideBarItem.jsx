@@ -8,7 +8,7 @@ const SideBarItem = () => {
   return (
     <>
       <Box
-        sx={{ background: "#1a1a1a;", padding: "15px", borderRadius: "8px" }}
+        sx={{ background: "#121212;", padding: "15px", borderRadius: "8px" }}
       >
         <Link
           style={{

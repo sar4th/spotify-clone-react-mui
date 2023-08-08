@@ -69,7 +69,14 @@ const MusicPlayer = () => {
               Playlist
             </Typography>
             <Typography
-              sx={{ fontWeight: "900", fontSize: "6rem", color: "white" }}
+              sx={{
+                fontWeight: "900",
+                fontSize: {
+                  xs: "3rem", // Font size for extra-small screens (mobile)
+                  sm: "6rem", // Font size for small screens and above
+                },
+                color: "white",
+              }}
             >
               {title}
             </Typography>

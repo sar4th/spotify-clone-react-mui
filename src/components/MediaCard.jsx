@@ -159,7 +159,7 @@ const MusicCard = ({ img, title, description, playListId }) => {
                 color: "#6a6a6a",
                 fontSize: "0.875rem",
                 fontWeight: "400",
-                fontFamily: "sans-serif",
+                // fontFamily: "sans-serif",
                 lineHeight: 1.2,
                 fontFamily: "'Circular Std', sans-serif",
               }}

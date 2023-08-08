@@ -99,7 +99,7 @@ const MusicBar = () => {
         justifyContent: "space-between",
         alignItems: "center",
         bottom: 0,
-        height: 65,
+        height: "104px",
         width: "100%",
         backgroundColor: "#282828",
         padding: "10px",

@@ -85,6 +85,9 @@ const songInfoStyle = {
   flex: "0 0 40%",
   display: "flex",
   alignItems: "center",
+  textOverflow: 'ellipsis',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
 };
 
 const songImageStyle = {
@@ -98,21 +101,29 @@ const songNameStyle = {
   fontSize: "1rem",
   fontWeight: "400",
   fontFamily: "'Circular Std', sans-serif",
+  textOverflow: "ellipsis",
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
 };
-
 const albumInfoStyle = {
   width: "30%",
   paddingLeft: "10px",
   flex: "0 0 30%",
+  textOverflow: "ellipsis",
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
 };
+
 
 const albumNameStyle = {
   color: "white",
   fontSize: "0.8125rem",
   fontWeight: "400",
   fontFamily: "'Circular Std', sans-serif",
+  textOverflow: "ellipsis",
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
 };
-
 const durationStyle = {
   width: "20%",
   textAlign: "right",

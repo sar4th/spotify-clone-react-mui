@@ -43,26 +43,27 @@ function ResponsiveDrawer(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   const renderPlaylists = () => {
-    return playlists.map((item) =>
-      isLoading ? (
-        <Skeleton
-          variant="rectangular"
-          width={210}
-          height={118}
-          animation="wave"
-        />
-      ) : (
-        <MediaCard
-          key={item.id}
-          img={item.images[0].url}
-          description={item.description}
-          title={item.name}
-          playListId={item.id}
-        />
-      )
-    );
+    return playlists.map((item) => (
+      <div key={item.id}>
+        {isLoading ? (
+          <Skeleton
+            variant="rectangular"
+            width={210}
+            height={118}
+            animation="wave"
+          />
+        ) : (
+          <MediaCard
+            img={item.images[0].url}
+            description={item.description}
+            title={item.name}
+            playListId={item.id}
+          />
+        )}
+      </div>
+    ));
   };
-
+  
   const renderTopMixes = () => {
     const topMixes = Music["Your top mixes"];
     return topMixes.map((item) => (

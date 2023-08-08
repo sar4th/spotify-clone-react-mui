@@ -3,7 +3,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 import AddIcon from "@mui/icons-material/Add";
 import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import React from "react";
-
+import "../styles/styles.css"
 const SidebarSecondItem = () => {
   return (
     <Box
@@ -25,7 +25,7 @@ const SidebarSecondItem = () => {
       >
         <Box display={"flex"} color={"white"}>
           <BookmarksIcon />
-          <Typography sx={{ marginLeft: "15px", padding: "4px 8px" }}>
+          <Typography className="loginbuttons" sx={{ marginLeft: "15px", padding: "4px 8px",fontWeight:"700 !important",fontFamily:"Circular Std', sans-serif !important",fontSize:"1rem" }}>
             Your Library
           </Typography>
         </Box>

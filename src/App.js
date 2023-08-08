@@ -33,7 +33,7 @@ function App() {
             dispatch(set_discover_weekly(discoverWeekly));
             dispatch(setLoadings(false));
           });
-        }, 5000); // Adjust the timeout duration (e.g., 5000 milliseconds)
+        }, 2000); // Adjust the timeout duration (e.g., 5000 milliseconds)
       };
 
       Promise.all([

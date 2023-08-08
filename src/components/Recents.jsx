@@ -46,7 +46,7 @@ useEffect(()=>{
   return (
     <Box
       sx={{
-        backgroundColor: "#1a1a1a",
+        backgroundColor: "#121212",
         color: "white",
         padding: "10px",
         marginTop: "8px",
@@ -64,7 +64,7 @@ useEffect(()=>{
       >
         <Box display="flex" color="white" alignItems="center">
           <BookmarksIcon />
-          <Typography sx={{ marginLeft: "15px", padding: "4px 8px", fontFamily: "'Circular Std', sans-serif" }}>
+          <Typography  sx={{ marginLeft: "15px", padding: "4px 8px",fontWeight:"700 ",fontFamily:"Circular Std', sans-serif ",fontSize:"1rem" }}>
             Your Library
           </Typography>
         </Box>
@@ -79,11 +79,12 @@ useEffect(()=>{
             color: "white",
             textTransform: "capitalize",
             fontSize: "0.8125rem",
-            fontWeight: 400,
-            fontFamily: "'Circular Std', sans-serif"
+            fontWeight: 700,
+            fontFamily: "'Circular Std', sans-serif",
+            backgroundColor:"hsla(0,0%,100%,.3)",
           }}
         >
-          playlist
+          playlists
         </Button>
       </Box>
       <Box
