@@ -29,10 +29,12 @@ function App() {
 
       const fetchPlaylist = () => {
         setTimeout(() => {
-          spotify.getPlaylist("37i9dQZF1DWX3SoTqhs2rq").then((discoverWeekly) => {
-            dispatch(set_discover_weekly(discoverWeekly));
-            dispatch(setLoadings(false));
-          });
+          spotify
+            .getPlaylist("37i9dQZF1DWX3SoTqhs2rq")
+            .then((discoverWeekly) => {
+              dispatch(set_discover_weekly(discoverWeekly));
+              dispatch(setLoadings(false));
+            });
         }, 2000); // Adjust the timeout duration (e.g., 5000 milliseconds)
       };
 
