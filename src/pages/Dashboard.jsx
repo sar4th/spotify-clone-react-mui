@@ -23,7 +23,6 @@ const drawerWidth = 340;
 
 function ResponsiveDrawer(props) {
   const isLoading = useSelector((state) => state.data.setLoading);
-  console.log("it is", isLoading);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.data.token);
   const playlists = useSelector((state) => state.data.playlists);
@@ -63,7 +62,7 @@ function ResponsiveDrawer(props) {
       </div>
     ));
   };
-  
+
   const renderTopMixes = () => {
     const topMixes = Music["Your top mixes"];
     return topMixes.map((item) => (
