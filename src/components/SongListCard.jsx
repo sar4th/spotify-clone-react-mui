@@ -1,23 +1,20 @@
+// SongListCard.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, IconButton, Typography } from "@mui/material";
 import { setCurrentSong, setPlaying } from "../redux/MusicSlice";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const SongListCard = () => {
   const playing = useSelector((state) => state.data.Playing);
-  console.log("Playing", playing);
   const dispatch = useDispatch();
-
-  const handleSongClick = (songID) => {
-    dispatch(setCurrentSong(songID));
-  };
-
   const songs = useSelector((state) => state.data.playListSongs);
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [logoToggles, setLogoToggles] = useState(songs.map(() => false));
 
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
@@ -27,28 +24,17 @@ const SongListCard = () => {
     setHoveredIndex(null);
   };
 
-  // Create a separate state for tracking the logo toggle for each song
-  const [logoToggles, setLogoToggles] = useState(songs.map(() => false));
-
-  const toggleLogo = (index) => {
-    // Toggle the logo state
-    setLogoToggles((prevToggles) => {
-      const newToggles = [...prevToggles];
-      newToggles[index] = !newToggles[index];
-      return newToggles;
-    });
+  const handleSongClick = (songID, index) => {
+    dispatch(setCurrentSong(songID));
 
     // Toggle the playing state
-    dispatch(setPlaying(!playing));
-  };
+    const newPlayingState = !playing;
+    dispatch(setPlaying(newPlayingState));
 
-    // Toggle music play and pause based on playing state
-  //   if (!playing) {
-  //     dispatch(setPlaying(true));
-  //   } else {
-  //     dispatch(setPlaying(false));
-  //   }
-  // };
+    // Update the logoToggles state based on the playing state
+    const newToggles = songs.map((song, i) => i === index && newPlayingState);
+    setLogoToggles(newToggles);
+  };
 
   return (
     <Box>
@@ -60,9 +46,12 @@ const SongListCard = () => {
           sx={{
             ...songBoxStyle,
           }}
-
+          onClick={() => handleSongClick(song.track.id, index)} // Pass index to handleSongClick
         >
-          <Box sx={indexBoxStyle} onClick={() => toggleLogo(index)}>
+          <Box
+            sx={indexBoxStyle}
+            onClick={() => handleSongClick(song.track.id, index)}
+          >
             {hoveredIndex === index ? (
               <IconButton>
                 {logoToggles[index] ? (
@@ -78,7 +67,7 @@ const SongListCard = () => {
               <Typography variant="body2">{index + 1}</Typography>
             )}
           </Box>
-          <Box sx={songInfoStyle}   onClick={() => handleSongClick(song.track.id)}>
+          <Box sx={songInfoStyle}>
             <img
               style={songImageStyle}
               src={song?.track?.album?.images[0]?.url}

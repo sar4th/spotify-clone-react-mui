@@ -75,7 +75,7 @@ const MusicBar = () => {
   }, [audioPlayer, volume, playing]);
 
   const togglePlay = () => {
-    if (audioPlayer || playing) {
+    if (audioPlayer) {
       setIsPlaying((prevState) => !prevState);
       const newPlayingState = !isPlaying; // Use updated isPlaying value
       dispatch(setPlaying(newPlayingState));
@@ -176,7 +176,7 @@ const MusicBar = () => {
               sx={{ color: "white", cursor: "pointer" }}
               onClick={playPreviousSong}
             />
-            {isPlaying ? (
+            {playing ? (
               <PauseCircleOutlineIcon
                 fontSize="large"
                 sx={{
