@@ -12,12 +12,17 @@ import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import { Box, Grid, Slider, Typography } from "@mui/material";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDispatch, useSelector } from "react-redux";
-import { setSongPlaying, setCurrentSong } from "../redux/MusicSlice";
+import {
+  setSongPlaying,
+  setCurrentSong,
+  setPlaying,
+} from "../redux/MusicSlice";
 
 const MusicBar = () => {
   const dispatch = useDispatch();
   const songId = useSelector((state) => state.data.currentSong);
   const playlist = useSelector((state) => state.data.playListSongs);
+  const playing = useSelector((state) => state.data.playing);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioPlayer, setAudioPlayer] = useState(null);
   const [volIcon, setVolumeIcon] = useState(true);
@@ -70,8 +75,9 @@ const MusicBar = () => {
   }, [isPlaying, audioPlayer, volume]);
 
   const togglePlay = () => {
-    if (audioPlayer) {
+    if (audioPlayer || playing) {
       setIsPlaying((prevState) => !prevState);
+      dispatch(setPlaying(isPlaying));
     }
   };
 

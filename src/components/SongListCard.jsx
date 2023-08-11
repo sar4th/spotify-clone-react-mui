@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, IconButton, Typography } from "@mui/material";
-import { setCurrentSong } from "../redux/MusicSlice";
+import { setCurrentSong, setPlaying } from "../redux/MusicSlice";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
 const SongListCard = () => {
-  const [icon, setPlayIcon] = useState(false);
   const dispatch = useDispatch();
 
   const handleSongClick = (songID) => {
@@ -15,7 +15,7 @@ const SongListCard = () => {
 
   const songs = useSelector((state) => state.data.playListSongs);
 
-  const [hoveredIndex, setHoveredIndex] = React.useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const handleMouseEnter = (index) => {
     setHoveredIndex(index);
@@ -24,9 +24,18 @@ const SongListCard = () => {
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
-  const toggleIcon = () => {
-    setPlayIcon((prevState) => !prevState);
+
+  // Create a separate state for tracking the logo toggle for each song
+  const [logoToggles, setLogoToggles] = useState(songs.map(() => false));
+
+  const toggleLogo = (index) => {
+    setLogoToggles((prevToggles) => {
+      const newToggles = [...prevToggles];
+      newToggles[index] = !newToggles[index];
+      return newToggles;
+    });
   };
+
   return (
     <Box>
       {songs.map((song, index) => (
@@ -39,10 +48,10 @@ const SongListCard = () => {
           }}
           onClick={() => handleSongClick(song.track.id)}
         >
-          <Box sx={indexBoxStyle} onClick={() => toggleIcon()}>
+          <Box sx={indexBoxStyle} onClick={() => toggleLogo(index)}>
             {hoveredIndex === index ? (
               <IconButton>
-                {icon ? (
+                {logoToggles[index] ? (
                   <img
                     src="https://open.spotifycdn.com/cdn/images/equaliser-green.f8937a92.svg"
                     alt=""
