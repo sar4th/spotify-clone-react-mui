@@ -46,7 +46,7 @@ const SongListCard = () => {
           sx={{
             ...songBoxStyle,
           }}
-          onClick={() => handleSongClick(song.track.id, index)} // Pass index to handleSongClick
+          onClick={() => handleSongClick(song.track.id, index)}
         >
           <Box
             sx={indexBoxStyle}
@@ -179,6 +179,9 @@ const songNameStyle = {
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
   overflow: "hidden",
+  "&:hover": {
+    textDecoration: "underline",
+  },
 };
 const albumInfoStyle = {
   width: "30%",
@@ -197,6 +200,9 @@ const albumNameStyle = {
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
   overflow: "hidden",
+  "&:hover": {
+    textDecoration: "underline",
+  },
 };
 const durationStyle = {
   width: "10%",

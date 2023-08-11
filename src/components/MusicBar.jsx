@@ -219,7 +219,7 @@ const MusicBar = () => {
               {volIcon ? (
                 <VolumeDownIcon />
               ) : (
-                <VolumeOffIcon sx={{ fontSize: "1.5rem" }} />
+                <VolumeOffIcon sx={{ fontSize: "1.3rem" }} />
               )}
             </div>
             <Slider

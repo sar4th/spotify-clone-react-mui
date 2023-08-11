@@ -46,7 +46,6 @@ const dataSlice = createSlice({
     },
     setPlaying:(state, action) => {
       state.Playing= action.payload;
-      console.log("IT is",state.Playing)
     }
   },
 });
