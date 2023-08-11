@@ -103,7 +103,7 @@ const MusicCard = ({ img, title, description, playListId }) => {
   );
 
   return (
-    <Grid item md={2.3} sm={12}>
+    <Grid item md={2.3} sm={12} padding={"2px"}>
       <Box
         sx={cardContainerStyle}
         onMouseEnter={handleMouseEnter}

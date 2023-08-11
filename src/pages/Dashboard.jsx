@@ -189,6 +189,7 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              background:"black"
             },
           }}
         >
@@ -225,14 +226,15 @@ function ResponsiveDrawer(props) {
           spacing={2}
           marginTop={"30px"}
           justifyContent={"center"}
+          gap={"5px"}
         >
           <TitleCard />
           {renderPlaylists()}
         </Grid>
 
-        <Grid container display={"flex"} spacing={2} marginTop={"30px"}>
+        {/* <Grid container display={"flex"} spacing={4} marginTop={"30px"}>
           {renderTopMixes()}
-        </Grid>
+        </Grid> */}
       </Box>
     </Box>
   );

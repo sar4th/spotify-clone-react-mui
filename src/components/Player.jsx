@@ -113,6 +113,7 @@ function Player(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: DRAWER_WIDTH,
+              background:"black"
             },
           }}
         >

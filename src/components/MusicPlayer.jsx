@@ -148,14 +148,14 @@ const MusicPlayer = () => {
         >
           <div>
             <Typography
-              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" }}
+              sx={{ fontSize: "0.8125rem", fontWeight: "700", color: "#fff" }}
             >
               #
             </Typography>
           </div>
           <div>
             <Typography
-              sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" }}
+              sx={{ fontSize: "0.8125rem", fontWeight: "700", color: "#fff" }}
             >
               Title
             </Typography>
@@ -169,7 +169,7 @@ const MusicPlayer = () => {
           }}
         >
           <Typography
-            sx={{ fontSize: "0.8125rem", fontWeight: "400", color: "white" }}
+            sx={{ fontSize: "0.8125rem", fontWeight: "700", color: "white" }}
           >
             Album
           </Typography>

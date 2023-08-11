@@ -8,7 +8,7 @@ import ShuffleIcon from "@mui/icons-material/Shuffle";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
-
+import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import { Box, Grid, Slider, Typography } from "@mui/material";
 import SpotifyWebApi from "spotify-web-api-js";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ const MusicBar = () => {
   const playlist = useSelector((state) => state.data.playListSongs);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioPlayer, setAudioPlayer] = useState(null);
+  const [volIcon, setVolumeIcon] = useState(true);
   const [trackInfo, setTrackInfo] = useState({
     data: {},
     image: "",
@@ -90,7 +91,12 @@ const MusicBar = () => {
   const handleVolumeChange = (event, newValue) => {
     setVolume(newValue);
   };
-
+  const handleMute = () => {
+    if (audioPlayer) {
+      audioPlayer.muted = !audioPlayer.muted;
+      setVolumeIcon(!audioPlayer.muted);
+    }
+  };
   return (
     <Box
       sx={{
@@ -101,9 +107,12 @@ const MusicBar = () => {
         bottom: 0,
         height: "104px",
         width: "100%",
-        backgroundColor: "#282828",
-        padding: "10px",
+        backgroundColor: "black",
+        padding: "20px",
         zIndex: 1000,
+        "@media screen and (min-width: 1000px)": {
+          height: "34px",
+        },
       }}
     >
       <Grid container alignItems="center" justifyContent={"center"}>
@@ -113,6 +122,7 @@ const MusicBar = () => {
               display: "flex",
               alignItems: "center",
               maxWidth: 300,
+              padding: "2px",
             }}
           >
             {trackInfo.image && (
@@ -127,10 +137,10 @@ const MusicBar = () => {
                 }}
               />
             )}
-            <div>
+            <div style={{ padding: "5px" }}>
               <Typography
                 // variant="h4"
-                sx={{ marginBottom: 1, color: "white" }}
+                sx={{ marginBottom: 1, color: "white", fontSize: "10px" }}
               >
                 {trackInfo.data?.album?.name}
               </Typography>
@@ -194,10 +204,17 @@ const MusicBar = () => {
               alignItems: "center",
               justifyContent: "flex-end",
               color: "white",
+              width: "180px",
             }}
           >
             <PlaylistPlayIcon sx={{ cursor: "pointer" }} />
-            <VolumeDownIcon sx={{ cursor: "pointer" }} />
+            <div onClick={() => handleMute()} sx={{ cursor: "pointer" }}>
+              {volIcon ? (
+                <VolumeDownIcon />
+              ) : (
+                <VolumeOffIcon sx={{ fontSize: "1.5rem" }} />
+              )}
+            </div>
             <Slider
               value={volume}
               onChange={handleVolumeChange}
@@ -206,7 +223,10 @@ const MusicBar = () => {
               step={0.01}
               aria-label="Volume slider"
               sx={{
-                color: "#1ed15e",
+                color: "white",
+                "&:hover": {
+                  color: "#1ed15e",
+                },
               }}
             />
           </Box>
