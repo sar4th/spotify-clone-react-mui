@@ -7,6 +7,8 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const SongListCard = () => {
+  const playing = useSelector((state) => state.data.Playing);
+  console.log("Playing", playing);
   const dispatch = useDispatch();
 
   const handleSongClick = (songID) => {
@@ -29,12 +31,24 @@ const SongListCard = () => {
   const [logoToggles, setLogoToggles] = useState(songs.map(() => false));
 
   const toggleLogo = (index) => {
+    // Toggle the logo state
     setLogoToggles((prevToggles) => {
       const newToggles = [...prevToggles];
       newToggles[index] = !newToggles[index];
       return newToggles;
     });
+
+    // Toggle the playing state
+    dispatch(setPlaying(!playing));
   };
+
+    // Toggle music play and pause based on playing state
+  //   if (!playing) {
+  //     dispatch(setPlaying(true));
+  //   } else {
+  //     dispatch(setPlaying(false));
+  //   }
+  // };
 
   return (
     <Box>
@@ -46,7 +60,7 @@ const SongListCard = () => {
           sx={{
             ...songBoxStyle,
           }}
-          onClick={() => handleSongClick(song.track.id)}
+
         >
           <Box sx={indexBoxStyle} onClick={() => toggleLogo(index)}>
             {hoveredIndex === index ? (
@@ -64,7 +78,7 @@ const SongListCard = () => {
               <Typography variant="body2">{index + 1}</Typography>
             )}
           </Box>
-          <Box sx={songInfoStyle}>
+          <Box sx={songInfoStyle}   onClick={() => handleSongClick(song.track.id)}>
             <img
               style={songImageStyle}
               src={song?.track?.album?.images[0]?.url}

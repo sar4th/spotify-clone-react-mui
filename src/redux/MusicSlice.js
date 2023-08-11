@@ -8,7 +8,7 @@ const IntialState = {
   playListSongs: [],
   currentSong: null,
   setLoading: false,
-  Playing:null,
+  Playing:false,
 };
 const dataSlice = createSlice({
   name: "data",
@@ -46,7 +46,7 @@ const dataSlice = createSlice({
     },
     setPlaying:(state, action) => {
       state.Playing= action.payload;
-      console.log(state.Playing)
+      console.log("IT is",state.Playing)
     }
   },
 });

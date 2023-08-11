@@ -22,7 +22,7 @@ const MusicBar = () => {
   const dispatch = useDispatch();
   const songId = useSelector((state) => state.data.currentSong);
   const playlist = useSelector((state) => state.data.playListSongs);
-  const playing = useSelector((state) => state.data.playing);
+  const playing = useSelector((state) => state.data.Playing);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioPlayer, setAudioPlayer] = useState(null);
   const [volIcon, setVolumeIcon] = useState(true);
@@ -66,18 +66,19 @@ const MusicBar = () => {
   useEffect(() => {
     if (audioPlayer) {
       audioPlayer.volume = volume;
-      if (isPlaying) {
+      if (playing) {
         audioPlayer.play();
       } else {
         audioPlayer.pause();
       }
     }
-  }, [isPlaying, audioPlayer, volume]);
+  }, [audioPlayer, volume, playing]);
 
   const togglePlay = () => {
     if (audioPlayer || playing) {
       setIsPlaying((prevState) => !prevState);
-      dispatch(setPlaying(isPlaying));
+      const newPlayingState = !isPlaying; // Use updated isPlaying value
+      dispatch(setPlaying(newPlayingState));
     }
   };
 
