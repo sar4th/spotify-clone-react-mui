@@ -1,7 +1,6 @@
-// SongListCard.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography, Grid } from "@mui/material";
 import { setCurrentSong, setPlaying } from "../redux/MusicSlice";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -9,10 +8,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const SongListCard = () => {
-  const playing = useSelector((state) => state.data.Playing);
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.data.playListSongs);
-
+  console.log("Rendering SongListCard with songs:", songs);
+  const playing = useSelector((state) => state.data.Playing);
+  console.log("the playing state", playing);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [logoToggles, setLogoToggles] = useState(songs.map(() => false));
 
@@ -25,6 +25,7 @@ const SongListCard = () => {
   };
 
   const handleSongClick = (songID, index) => {
+    console.log("handleSongClick triggered for song ID:", songID);
     dispatch(setCurrentSong(songID));
 
     // Toggle the playing state
@@ -37,84 +38,81 @@ const SongListCard = () => {
   };
 
   return (
-    <Box>
+    <Grid container spacing={2} backgroundColor={"#121212"} my={2}>
       {songs.map((song, index) => (
-        <Box
-          onMouseEnter={() => handleMouseEnter(index)}
-          onMouseLeave={handleMouseLeave}
-          key={index}
-          sx={{
-            ...songBoxStyle,
-          }}
-          onClick={() => handleSongClick(song.track.id, index)}
-        >
+        <Grid item xs={12} key={index} paddingTop={"0 !important"}>
           <Box
-            sx={indexBoxStyle}
+            onMouseEnter={() => handleMouseEnter(index)}
+            onMouseLeave={handleMouseLeave}
+            sx={songBoxStyle}
             onClick={() => handleSongClick(song.track.id, index)}
           >
-            {hoveredIndex === index ? (
-              <IconButton>
-                {logoToggles[index] ? (
-                  <img
-                    src="https://open.spotifycdn.com/cdn/images/equaliser-green.f8937a92.svg"
-                    alt=""
-                  />
-                ) : (
-                  <PlayArrowIcon sx={{ color: "white" }} />
-                )}
-              </IconButton>
-            ) : (
-              <Typography variant="body2">{index + 1}</Typography>
-            )}
-          </Box>
-          <Box sx={songInfoStyle}>
-            <img
-              style={songImageStyle}
-              src={song?.track?.album?.images[0]?.url}
-              alt="Song"
-            />
-            <Typography className="songList" sx={songNameStyle}>
-              {song?.track?.name}
-            </Typography>
-          </Box>
-          <Box sx={albumInfoStyle}>
-            <Typography sx={albumNameStyle}>
-              {song?.track?.album?.name}
-            </Typography>
-          </Box>
-          <Box sx={{ ...favoriteIconStyle, transition: "color 0.3s ease" }}>
-            {hoveredIndex && (
-              <FavoriteBorderIcon
-                sx={{
-                  color: hoveredIndex === index ? "white" : "transparent",
-                  fontSize: "0.875rem",
-                  transition: "color 0.3s ease",
-                }}
+            <Box sx={indexBoxStyle}>
+              {hoveredIndex === index ? (
+                <IconButton onClick={() => handleSongClick(song.track.id, index)}>
+                  {logoToggles[index] ? (
+                    <img
+                      src="https://open.spotifycdn.com/cdn/images/equaliser-green.f8937a92.svg"
+                      alt=""
+                    />
+                  ) : (
+                    <PlayArrowIcon sx={{ color: "white" }} />
+                  )}
+                </IconButton>
+              ) : (
+                <Typography sx={{color:"#b3b3b3"}}>{index + 1}</Typography>
+              )}
+            </Box>
+            <Box sx={songInfoStyle}>
+              <img
+                style={songImageStyle}
+                src={song?.track?.album?.images[0]?.url}
+                alt="Song"
               />
-            )}
+              <Typography className="songList" sx={songNameStyle}>
+                {song?.track?.name}
+              </Typography>
+            </Box>
+            <Box sx={albumInfoStyle}>
+              <Typography sx={albumNameStyle}>
+                {song?.track?.album?.name}
+              </Typography>
+            </Box>
+            <Box sx={{ ...favoriteIconStyle, transition: "color 0.3s ease" }}>
+              {hoveredIndex && (
+                <FavoriteBorderIcon
+                  sx={{
+                    color: hoveredIndex === index ? "white" : "transparent",
+                    fontSize: "0.875rem",
+                    transition: "color 0.3s ease",
+                  }}
+                />
+              )}
+            </Box>
+            <Box sx={durationStyle}>
+              <Typography sx={durationTextStyle}>
+                {formatDuration(song?.track?.duration_ms)}
+              </Typography>
+            </Box>
+            <Box>
+              {/* {hoveredIndex && ( */}
+                <Box sx={{ ...horizonIconStyle, transition: "color 0.3s ease" }}>
+                  {
+                    <MoreHorizIcon
+                      sx={{
+                        opacity: hoveredIndex === index ? "1" : "0",
+                        transition: "color 0.3s ease",
+                        color:"white"
+                      }}
+                    />
+                  }
+                </Box>
+              {/* )} */}
+            </Box>
           </Box>
-          <Box sx={durationStyle}>
-            <Typography sx={durationTextStyle}>
-              {formatDuration(song?.track?.duration_ms)}
-            </Typography>
-          </Box>
-          <Box>
-            {hoveredIndex && (
-              <Box sx={{ ...horizonIconStyle, transition: "color 0.3s ease" }}>
-                {
-                  <MoreHorizIcon
-                    sx={{
-                      color: hoveredIndex === index ? "white" : "transparent",
-                      transition: "color 0.3s ease",
-                    }}
-                  />
-                }
-              </Box>
-            )}
-          </Box>
-        </Box>
+        </Grid>
       ))}
-    </Box>
+    </Grid>
   );
 };
 
@@ -168,7 +166,7 @@ const songImageStyle = {
   height: "35px",
   width: "35px",
   marginRight: "10px",
-  padding: "8px",
+  padding: "5px",
 };
 
 const songNameStyle = {
@@ -221,11 +219,12 @@ const favoriteIconStyle = {
   color: "transparent",
 };
 const horizonIconStyle = {
-  dispatch: "flex",
+  display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: "100%",
-  height: "10px",
+  width: "24px",
+  height: "24px",
   color: "transparent",
 };
+
 export default SongListCard;

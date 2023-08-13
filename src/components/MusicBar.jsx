@@ -19,6 +19,7 @@ import {
 } from "../redux/MusicSlice";
 
 const MusicBar = () => {
+
   const dispatch = useDispatch();
   const songId = useSelector((state) => state.data.currentSong);
   const playlist = useSelector((state) => state.data.playListSongs);
@@ -33,8 +34,8 @@ const MusicBar = () => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [volume, setVolume] = useState(0.5);
 
-  const spotify = new SpotifyWebApi();
 
+  const spotify = new SpotifyWebApi();
   useEffect(() => {
     const loadTrack = async () => {
       if (songId) {
@@ -49,9 +50,15 @@ const MusicBar = () => {
           if (audioUrl) {
             if (audioPlayer) {
               audioPlayer.pause();
+              audioPlayer.src = audioUrl; // Set new audio source
+            } else {
+              setAudioPlayer(new Audio(audioUrl));
             }
-            setAudioPlayer(new Audio(audioUrl));
-            setIsPlaying(true);
+            if (playing) {
+              audioPlayer.play().catch(error => {
+                console.error("Error playing audio:", error);
+              });
+            }
           } else {
             console.error("Preview URL not available for this track.");
           }
@@ -61,13 +68,15 @@ const MusicBar = () => {
       }
     };
     loadTrack();
-  }, [songId]);
+  }, [songId, audioPlayer, dispatch, playing]);
 
   useEffect(() => {
     if (audioPlayer) {
       audioPlayer.volume = volume;
       if (playing) {
-        audioPlayer.play();
+        audioPlayer.play().catch(error => {
+          console.error("Error playing audio:", error);
+        });
       } else {
         audioPlayer.pause();
       }
@@ -76,12 +85,16 @@ const MusicBar = () => {
 
   const togglePlay = () => {
     if (audioPlayer) {
-      setIsPlaying((prevState) => !prevState);
-      const newPlayingState = !isPlaying; // Use updated isPlaying value
-      dispatch(setPlaying(newPlayingState));
+      if (playing) {
+        audioPlayer.pause();
+      } else {
+        audioPlayer.play().catch(error => {
+          console.error("Error playing audio:", error);
+        });
+      }
+      dispatch(setPlaying(!playing));
     }
   };
-
   const playNextSong = () => {
     const nextIndex = (currentSongIndex + 1) % playlist.length;
     setCurrentSongIndex(nextIndex);
@@ -122,7 +135,7 @@ const MusicBar = () => {
         },
       }}
     >
-      <Grid container alignItems="center" justifyContent={"center"}>
+      <Grid container alignItems="center" justifyContent={"flex-start"}>
         <Grid item xs={12} sm={3}>
           <Box
             sx={{

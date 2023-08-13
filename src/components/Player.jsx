@@ -143,17 +143,14 @@ function Player(props) {
           p: 1,
           overflow: "hidden",
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
-          background: "#1a1a1a",
+          background: "#121212",
+
         }}
       >
         <Grid container>
           <Grid item xs={12}>
             {/* Render your SongListCard component */}
             <MusicPlayer />
-          </Grid>
-          <Grid item xs={12}>
-            {/* Render your MyComponent component */}
-            <SongListCard />
           </Grid>
         </Grid>
 

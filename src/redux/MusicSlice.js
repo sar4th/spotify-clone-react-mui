@@ -34,6 +34,7 @@ const dataSlice = createSlice({
     },
     setPlaylistSongs: (state, action) => {
       state.playListSongs = action.payload;
+      // console.log("SONGS",state.playListSongs);
     },
     setCurrentSong: (state, action) => {
       state.currentSong = action.payload;
@@ -46,6 +47,7 @@ const dataSlice = createSlice({
     },
     setPlaying:(state, action) => {
       state.Playing= action.payload;
+      console.log(state.Playing)
     }
   },
 });
