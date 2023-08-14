@@ -19,7 +19,6 @@ import {
 } from "../redux/MusicSlice";
 
 const MusicBar = () => {
-
   const dispatch = useDispatch();
   const songId = useSelector((state) => state.data.currentSong);
   const playlist = useSelector((state) => state.data.playListSongs);
@@ -33,7 +32,6 @@ const MusicBar = () => {
   });
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [volume, setVolume] = useState(0.5);
-
 
   const spotify = new SpotifyWebApi();
   useEffect(() => {
@@ -55,7 +53,7 @@ const MusicBar = () => {
               setAudioPlayer(new Audio(audioUrl));
             }
             if (playing) {
-              audioPlayer.play().catch(error => {
+              audioPlayer.play().catch((error) => {
                 console.error("Error playing audio:", error);
               });
             }
@@ -74,7 +72,7 @@ const MusicBar = () => {
     if (audioPlayer) {
       audioPlayer.volume = volume;
       if (playing) {
-        audioPlayer.play().catch(error => {
+        audioPlayer.play().catch((error) => {
           console.error("Error playing audio:", error);
         });
       } else {
@@ -88,7 +86,7 @@ const MusicBar = () => {
       if (playing) {
         audioPlayer.pause();
       } else {
-        audioPlayer.play().catch(error => {
+        audioPlayer.play().catch((error) => {
           console.error("Error playing audio:", error);
         });
       }
@@ -224,7 +222,9 @@ const MusicBar = () => {
               alignItems: "center",
               justifyContent: "flex-end",
               color: "white",
-              width: "180px",
+              "@media screen and (max-width: 1000px)": {
+                width: "260px",
+              },
             }}
           >
             <PlaylistPlayIcon sx={{ cursor: "pointer" }} />
