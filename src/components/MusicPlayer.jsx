@@ -10,6 +10,8 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { setCurrentSong, setSongPlaying } from "../redux/MusicSlice";
 const MusicPlayer = () => {
   const playlist = useSelector((state) => state.data.playListSongs);
+const totalSongCount =playlist.length
+console.log(totalSongCount);
   const handlePlay = () => {
     if (playlist.length > 0) {
       const firstItemId = playlist[0].track.id;
@@ -72,9 +74,8 @@ const MusicPlayer = () => {
               sx={{
                 fontWeight: "900",
                 fontSize: {
-                  xs: "3rem", // Font size for extra-small screens (mobile)
-                  sm: "6rem", // Font size for small screens and above
-                },
+                  xs: "3rem",
+                  sm: "6rem",             },
                 color: "white",
               }}
             >
@@ -85,7 +86,7 @@ const MusicPlayer = () => {
             >
               {description}
             </Typography>
-            <div>
+            <div style={{display:"flex",gap:"5px",marginTop:"3px"}} >
               <img
                 src={logo}
                 alt=""
@@ -93,12 +94,22 @@ const MusicPlayer = () => {
               />
               <Typography
                 sx={{
-                  fontSize: "0.8125rem",
+                  fontSize: "0.875rem",
                   fontWeight: "700",
                   color: "white",
                 }}
               >
                 Spotify
+              </Typography>
+              .
+              <Typography
+                sx={{
+                  fontSize: "0.875rem",
+                  fontWeight: "700",
+                  color: "white",
+                }}
+              >
+               {`${totalSongCount} songs`}
               </Typography>
             </div>
           </Box>

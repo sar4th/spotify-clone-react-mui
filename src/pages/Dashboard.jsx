@@ -123,12 +123,18 @@ function ResponsiveDrawer(props) {
               sx={{
                 borderRadius: "500px",
                 textTransform: "capitalize",
-                color: "white",
+                color: "grey",
                 background: "black",
                 fontSize: "1rem",
                 fontWeight: "700",
                 padding: "7px",
                 width: "100px",
+                transition: "background-color 0.3s ease-in-out",
+                wordSpacing:"1px",
+                "&:hover": {
+                  fontSize:"1.1rem",
+                  color: "white",
+                  border:"0px"                }
               }}
             >
               Logout

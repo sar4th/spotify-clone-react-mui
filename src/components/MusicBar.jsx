@@ -129,7 +129,7 @@ const MusicBar = () => {
         padding: "20px",
         zIndex: 1000,
         "@media screen and (min-width: 1000px)": {
-          height: "34px",
+          height: "18px",
         },
       }}
     >
@@ -222,6 +222,7 @@ const MusicBar = () => {
               alignItems: "center",
               justifyContent: "flex-end",
               color: "white",
+              width:"180px",
               "@media screen and (max-width: 1000px)": {
                 width: "260px",
               },
