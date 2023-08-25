@@ -112,7 +112,7 @@ function Player(props) {
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
-              width: DRAWER_WIDTH,
+              width: "250px",
               background: "black",
             },
           }}
@@ -140,7 +140,7 @@ function Player(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 1,
+          // p: 1,
           overflow: "hidden",
           width: { sm: `calc(100% - ${DRAWER_WIDTH}px)` },
           background: "#121212",

@@ -18,6 +18,7 @@ import Recents from "../components/Recents";
 import { setToken } from "../redux/MusicSlice";
 import { Music } from "../utils/Music";
 import { TitleCard } from "../components/TitleCard";
+import MusicBar from "../components/MusicBar";
 
 const drawerWidth = 340;
 
@@ -130,11 +131,12 @@ function ResponsiveDrawer(props) {
                 padding: "7px",
                 width: "100px",
                 transition: "background-color 0.3s ease-in-out",
-                wordSpacing:"1px",
+                wordSpacing: "1px",
                 "&:hover": {
-                  fontSize:"1.1rem",
+                  fontSize: "1.1rem",
                   color: "white",
-                  border:"0px"                }
+                  border: "0px",
+                },
               }}
             >
               Logout
@@ -195,7 +197,7 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              background:"black"
+              background: "black",
             },
           }}
         >
@@ -221,7 +223,8 @@ function ResponsiveDrawer(props) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
+          // p: 3,
+          // padding:"3px",
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           background: "#1a1a1a;",
         }}
@@ -241,6 +244,8 @@ function ResponsiveDrawer(props) {
         {/* <Grid container display={"flex"} spacing={4} marginTop={"30px"}>
           {renderTopMixes()}
         </Grid> */}
+
+        <MusicBar />
       </Box>
     </Box>
   );

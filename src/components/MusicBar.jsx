@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../styles/Footer.css";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
@@ -23,8 +23,10 @@ const MusicBar = () => {
   const songId = useSelector((state) => state.data.currentSong);
   const playlist = useSelector((state) => state.data.playListSongs);
   const playing = useSelector((state) => state.data.Playing);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [audioPlayer, setAudioPlayer] = useState(null);
+
+  const [audioPlayer, setAudioPlayer] = useState(new Audio());
+  const [audioUrl, setAudioUrl] = useState("");
+  const [currentTime, setCurrentTime] = useState(0);
   const [volIcon, setVolumeIcon] = useState(true);
   const [trackInfo, setTrackInfo] = useState({
     data: {},
@@ -34,31 +36,33 @@ const MusicBar = () => {
   const [volume, setVolume] = useState(0.5);
 
   const spotify = new SpotifyWebApi();
+
   useEffect(() => {
     const loadTrack = async () => {
       if (songId) {
         try {
           const response = await spotify.getTrack(songId);
-          const audioUrl = response.preview_url;
+          const newAudioUrl = response.preview_url;
           setTrackInfo({
             data: response,
             image: response.album.images[0]?.url || "",
           });
-          dispatch(setSongPlaying(false));
-          if (audioUrl) {
-            if (audioPlayer) {
-              audioPlayer.pause();
-              audioPlayer.src = audioUrl; // Set new audio source
-            } else {
-              setAudioPlayer(new Audio(audioUrl));
-            }
-            if (playing) {
-              audioPlayer.play().catch((error) => {
-                console.error("Error playing audio:", error);
-              });
-            }
+          // dispatch(setSongPlaying(false));
+
+          if (newAudioUrl !== audioUrl) {
+            setAudioUrl(newAudioUrl);
+            audioPlayer.pause();
+            audioPlayer.src = newAudioUrl;
+            setCurrentTime(0);
+          }
+
+          if (playing) {
+            audioPlayer.currentTime = currentTime;
+            audioPlayer.play().catch((error) => {
+              console.error("Error playing audio:", error);
+            });
           } else {
-            console.error("Preview URL not available for this track.");
+            audioPlayer.pause();
           }
         } catch (error) {
           console.error("Error loading track:", error);
@@ -66,33 +70,34 @@ const MusicBar = () => {
       }
     };
     loadTrack();
-  }, [songId, audioPlayer, dispatch, playing]);
+  }, [songId, audioUrl, currentTime, playing]);
 
   useEffect(() => {
     if (audioPlayer) {
       audioPlayer.volume = volume;
-      if (playing) {
-        audioPlayer.play().catch((error) => {
-          console.error("Error playing audio:", error);
-        });
-      } else {
-        audioPlayer.pause();
-      }
+
+      // if (playing) {
+      //   audioPlayer.play().catch((error) => {
+      //     console.error("Error playing audio:", error);
+      //   });
+      // } else {
+      //   audioPlayer.pause();
+      // }
     }
   }, [audioPlayer, volume, playing]);
 
   const togglePlay = () => {
-    if (audioPlayer) {
-      if (playing) {
-        audioPlayer.pause();
-      } else {
-        audioPlayer.play().catch((error) => {
-          console.error("Error playing audio:", error);
-        });
-      }
-      dispatch(setPlaying(!playing));
+    if (playing) {
+      audioPlayer.pause();
+      setCurrentTime(audioPlayer.currentTime);
+    } else {
+      audioPlayer.play().catch((error) => {
+        console.error("Error playing audio:", error);
+      });
     }
+    dispatch(setPlaying(!playing));
   };
+
   const playNextSong = () => {
     const nextIndex = (currentSongIndex + 1) % playlist.length;
     setCurrentSongIndex(nextIndex);
@@ -109,12 +114,14 @@ const MusicBar = () => {
   const handleVolumeChange = (event, newValue) => {
     setVolume(newValue);
   };
+
   const handleMute = () => {
     if (audioPlayer) {
       audioPlayer.muted = !audioPlayer.muted;
       setVolumeIcon(!audioPlayer.muted);
     }
   };
+
   return (
     <Box
       sx={{
@@ -126,14 +133,20 @@ const MusicBar = () => {
         height: "104px",
         width: "100%",
         backgroundColor: "black",
-        padding: "20px",
+        padding: "10px",
         zIndex: 1000,
         "@media screen and (min-width: 1000px)": {
-          height: "18px",
+          height: "60px",
         },
       }}
     >
-      <Grid container alignItems="center" justifyContent={"flex-start"}>
+      <Grid
+        container
+        display={"flex"}
+        alignItems="center"
+        justifyContent={"flex-start"}
+        md={12}
+      >
         <Grid item xs={12} sm={3}>
           <Box
             sx={{
@@ -222,7 +235,7 @@ const MusicBar = () => {
               alignItems: "center",
               justifyContent: "flex-end",
               color: "white",
-              width:"180px",
+              width: "180px",
               "@media screen and (max-width: 1000px)": {
                 width: "260px",
               },

@@ -108,6 +108,7 @@ const MusicCard = ({ img, title, description, playListId }) => {
         sx={cardContainerStyle}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        onClick={() => handlePlay({ playListId, img, description, title })}
       >
         <Box style={imageContainerStyle}>
           <img style={imageStyle} src={img} alt="img" />

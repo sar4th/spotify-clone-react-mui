@@ -8,7 +8,8 @@ const IntialState = {
   playListSongs: [],
   currentSong: null,
   setLoading: false,
-  Playing:false,
+  Playing: false,
+  currentTime: 0,
 };
 const dataSlice = createSlice({
   name: "data",
@@ -38,6 +39,7 @@ const dataSlice = createSlice({
     },
     setCurrentSong: (state, action) => {
       state.currentSong = action.payload;
+      // console.log("the current song",state.currentSong);
     },
     setSongPlaying: (state, action) => {
       state.songPlaying = action.payload;
@@ -45,10 +47,14 @@ const dataSlice = createSlice({
     setLoadings: (state, action) => {
       state.setLoading = action.payload;
     },
-    setPlaying:(state, action) => {
-      state.Playing= action.payload;
-      console.log(state.Playing)
-    }
+    setPlaying: (state, action) => {
+      state.Playing = action.payload;
+      // console.log("song is playing",state.Playing)
+    },
+    setCurrentTime: (state, action) => {
+      state.currentTime = action.payload;
+    },
+
   },
 });
 export const {
@@ -62,6 +68,7 @@ export const {
   setCurrentSong,
   setSongPlaying,
   setLoadings,
-  setPlaying
+  setPlaying,
+  setCurrentTime
 } = dataSlice.actions;
 export default dataSlice.reducer;

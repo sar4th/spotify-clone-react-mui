@@ -7,6 +7,7 @@ import BookmarksIcon from "@mui/icons-material/Bookmarks";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
+import "../styles/styles.css";
 const Recents = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.data.token);
@@ -107,7 +108,7 @@ const Recents = () => {
           Recent
         </Typography>
       </Box>
-      <Box sx={{ padding: "16px" }}>
+      <Box sx={{ padding: "16px" ,overflowY:"auto",height:"80%"}}>
         {albums?.map((item) => (
           <Box
             key={item?.id}

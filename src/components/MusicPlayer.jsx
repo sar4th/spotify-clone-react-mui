@@ -7,25 +7,28 @@ import SongListCard from "./SongListCard";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { setCurrentSong, setSongPlaying } from "../redux/MusicSlice";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import { setCurrentSong, setPlaying, setSongPlaying } from "../redux/MusicSlice";
 const MusicPlayer = () => {
   const playlist = useSelector((state) => state.data.playListSongs);
-const totalSongCount =playlist.length
-console.log(totalSongCount);
+  const isPlaying = useSelector((state) => state.data.Playing);
+  const totalSongCount = playlist.length;
   const handlePlay = () => {
     if (playlist.length > 0) {
       const firstItemId = playlist[0].track.id;
       dispatch(setCurrentSong(firstItemId));
+      const newPlayingState = !isPlaying;
+      dispatch(setPlaying(newPlayingState));
     } else {
       console.log("Playlist is empty.");
     }
   };
 
   const dispatch = useDispatch();
-  const [playing, setPlaying] = useState(false);
-  if (playing) {
-    dispatch(setSongPlaying(playing));
-  }
+  // const [playing, setPlaying] = useState(false);
+  // if (playing) {
+  //   dispatch(setSongPlaying(playing));
+  // }
   const playButtonStyle = {
     opacity: 1,
     zIndex: 1,
@@ -75,7 +78,8 @@ console.log(totalSongCount);
                 fontWeight: "900",
                 fontSize: {
                   xs: "3rem",
-                  sm: "6rem",             },
+                  sm: "6rem",
+                },
                 color: "white",
               }}
             >
@@ -86,7 +90,7 @@ console.log(totalSongCount);
             >
               {description}
             </Typography>
-            <div style={{display:"flex",gap:"5px",marginTop:"3px"}} >
+            <div style={{ display: "flex", gap: "5px", marginTop: "3px" }}>
               <img
                 src={logo}
                 alt=""
@@ -109,7 +113,7 @@ console.log(totalSongCount);
                   color: "white",
                 }}
               >
-               {`${totalSongCount} songs`}
+                {`${totalSongCount} songs`}
               </Typography>
             </div>
           </Box>
@@ -122,16 +126,29 @@ console.log(totalSongCount);
         padding={"5px"}
       >
         <Box>
-          <IconButton
-            style={{ ...playButtonStyle, opacity: 1 }}
-            aria-label="play"
-            // onClick={()=>handlePlay({playListId,img,description,title})}
-            onClick={() => handlePlay(playListId)}
-          >
-            <PlayCircleFilledIcon
-              sx={{ fontSize: "4rem", color: "#1DB954", fontWeight: "700" }}
-            />
-          </IconButton>
+          {isPlaying ? (
+            <IconButton
+              style={{ ...playButtonStyle, opacity: 1 }}
+              aria-label="play"
+              // onClick={()=>handlePlay({playListId,img,description,title})}
+              onClick={() => handlePlay(playListId)}
+            >
+              <StopCircleIcon
+                sx={{ fontSize: "4rem", color: "#1DB954", fontWeight: "700" }}
+              />
+            </IconButton>
+          ) : (
+            <IconButton
+              style={{ ...playButtonStyle, opacity: 1 }}
+              aria-label="play"
+              // onClick={()=>handlePlay({playListId,img,description,title})}
+              onClick={() => handlePlay(playListId)}
+            >
+              <PlayCircleFilledIcon
+                sx={{ fontSize: "4rem", color: "#1DB954", fontWeight: "700" }}
+              />
+            </IconButton>
+          )}
         </Box>
         <Box sx={{ width: "3rem", height: "2rem" }}>
           <FavoriteBorderIcon

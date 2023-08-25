@@ -1,5 +1,11 @@
-/* styles.css */
 
+/* styles.css */
+html{
+  background-color: black;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 body {
   padding: 0;
   margin: 0;
@@ -22,3 +28,5 @@ body {
 .songList {
   font-family: "Circular Std", sans-serif;
 }
+
+

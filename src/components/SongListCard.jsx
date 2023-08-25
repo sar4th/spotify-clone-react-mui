@@ -10,9 +10,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 const SongListCard = () => {
   const dispatch = useDispatch();
   const songs = useSelector((state) => state.data.playListSongs);
-  console.log("Rendering SongListCard with songs:", songs);
   const playing = useSelector((state) => state.data.Playing);
-  console.log("the playing state", playing);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [logoToggles, setLogoToggles] = useState(songs.map(() => false));
 
@@ -25,7 +23,6 @@ const SongListCard = () => {
   };
 
   const handleSongClick = (songID, index) => {
-    console.log("handleSongClick triggered for song ID:", songID);
     dispatch(setCurrentSong(songID));
 
     // Toggle the playing state

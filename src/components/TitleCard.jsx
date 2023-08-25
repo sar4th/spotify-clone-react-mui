@@ -3,7 +3,7 @@ import React from "react";
 
 export const TitleCard = () => {
   return (
-    <Grid item md={12} xs={12}>
+    <Grid item md={12} xs={12} marginTop={"20px"}>
       <Typography
         sx={{
           color: "white",
