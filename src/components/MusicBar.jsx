@@ -130,11 +130,11 @@ const MusicBar = () => {
         justifyContent: "space-between",
         alignItems: "center",
         bottom: 0,
-        height: "104px",
+        height: "148px",
         width: "100%",
         backgroundColor: "black",
-        padding: "10px",
-        zIndex: 1000,
+        padding: "25px",
+        zIndex: 5000,
         "@media screen and (min-width: 1000px)": {
           height: "60px",
         },
@@ -144,15 +144,15 @@ const MusicBar = () => {
         container
         display={"flex"}
         alignItems="center"
-        justifyContent={"flex-start"}
+        // justifyContent={"flex-start"}
         md={12}
       >
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={3} md={4}>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
-              maxWidth: 300,
+              // maxWidth: 300,
               padding: "2px",
             }}
           >
@@ -184,15 +184,15 @@ const MusicBar = () => {
             </div>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={12} md={4}>
+        <Grid item xs={12} sm={12} md={4} gap={2}>
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              // padding: "30px",
+              padding: "30px",
               color: "white",
-              maxWidth: 300,
+              // maxWidth: 300,
             }}
           >
             <ShuffleIcon sx={{ color: "#1ed15e", cursor: "pointer" }} />
@@ -228,7 +228,7 @@ const MusicBar = () => {
             <RepeatIcon sx={{ color: "#1ed15e", cursor: "pointer" }} />
           </Box>
         </Grid>
-        <Grid item xs={12} sm={12} md={5}>
+        <Grid item xs={12} sm={12} md={4} display={"flex"} justifyContent={"center"}>
           <Box
             sx={{
               display: "flex",

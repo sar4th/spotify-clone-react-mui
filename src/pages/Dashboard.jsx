@@ -245,7 +245,7 @@ function ResponsiveDrawer(props) {
           {renderTopMixes()}
         </Grid> */}
 
-        <MusicBar />
+        {/* <MusicBar /> */}
       </Box>
     </Box>
   );

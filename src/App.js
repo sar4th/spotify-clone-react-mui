@@ -14,6 +14,7 @@ import {
   set_playlist,
   set_user,
 } from "./redux/MusicSlice";
+import MusicBar from "./components/MusicBar";
 
 const spotify = new SpotifyWebApi();
 
@@ -72,6 +73,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
+      {token && <MusicBar />}
     </div>
   );
 }

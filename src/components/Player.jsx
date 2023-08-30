@@ -154,7 +154,7 @@ function Player(props) {
           </Grid>
         </Grid>
 
-        <MusicBar />
+        {/* <MusicBar /> */}
       </Box>
     </Box>
   );

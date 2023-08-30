@@ -108,7 +108,7 @@ const Recents = () => {
           Recent
         </Typography>
       </Box>
-      <Box sx={{ padding: "16px" ,overflowY:"auto",height:"80%"}}>
+      <Box sx={{ padding: "16px" ,overflowY:"auto",height:"39%"}}>
         {albums?.map((item) => (
           <Box
             key={item?.id}
